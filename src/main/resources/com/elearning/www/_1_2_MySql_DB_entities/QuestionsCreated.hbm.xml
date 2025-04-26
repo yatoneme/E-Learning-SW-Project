@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.QuestionsCreated" table="questions_created" catalog="elearning" optimistic-lock="version">
+        <composite-id name="id" class="com.elearning.www._1_2_MySql_DB_entities.QuestionsCreatedId">
+            <key-property name="questionIndex" type="short">
+                <column name="question_index" />
+            </key-property>
+            <key-property name="sectionId" type="int">
+                <column name="section_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="course" class="com.elearning.www._1_2_MySql_DB_entities.Course" fetch="select">
+            <column name="course_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="instructor" class="com.elearning.www._1_2_MySql_DB_entities.Instructor" fetch="select">
+            <column name="instructor_id" not-null="true" />
+            <column name="application_id" />
+        </many-to-one>
+        <many-to-one name="section" class="com.elearning.www._1_2_MySql_DB_entities.Section" update="false" insert="false" fetch="select">
+            <column name="section_id" not-null="true" />
+        </many-to-one>
+        <property name="question" type="string">
+            <column name="question" length="65535" not-null="true" />
+        </property>
+        <property name="QWeight" type="float">
+            <column name="q_weight" precision="5" not-null="true" />
+        </property>
+        <set name="questionChoiceses" table="question_choices" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="question_index" not-null="true" />
+                <column name="section_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.QuestionChoices" />
+        </set>
+    </class>
+</hibernate-mapping>

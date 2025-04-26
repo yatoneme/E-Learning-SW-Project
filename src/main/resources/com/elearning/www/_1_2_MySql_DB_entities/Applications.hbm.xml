@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Applications" table="applications" catalog="elearning" optimistic-lock="version">
+        <id name="applicationId" type="int">
+            <column name="application_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="admin" class="com.elearning.www._1_2_MySql_DB_entities.Admin" fetch="select">
+            <column name="admin_id" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" not-null="true" />
+        </property>
+        <property name="cv" type="binary">
+            <column name="cv" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="120" not-null="true" unique="true" />
+        </property>
+        <property name="submissionDate" type="date">
+            <column name="submission_date" length="10" not-null="true" />
+        </property>
+        <property name="reviewStatus" type="byte">
+            <column name="review_status" not-null="true" />
+        </property>
+        <property name="approvalDate" type="date">
+            <column name="approval_date" length="10" />
+        </property>
+        <set name="instructors" table="instructor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="application_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Instructor" />
+        </set>
+    </class>
+</hibernate-mapping>

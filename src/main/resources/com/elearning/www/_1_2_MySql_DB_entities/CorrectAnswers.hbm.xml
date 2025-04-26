@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.CorrectAnswers" table="correct_answers" catalog="elearning" optimistic-lock="version">
+        <composite-id name="id" class="com.elearning.www._1_2_MySql_DB_entities.CorrectAnswersId">
+            <key-property name="choiceIndex" type="byte">
+                <column name="choice_index" />
+            </key-property>
+            <key-property name="questionIndex" type="short">
+                <column name="question_index" />
+            </key-property>
+            <key-property name="sectionId" type="int">
+                <column name="section_id" />
+            </key-property>
+        </composite-id>
+        <one-to-one name="questionChoices" class="com.elearning.www._1_2_MySql_DB_entities.QuestionChoices" constrained="true"></one-to-one>
+    </class>
+</hibernate-mapping>

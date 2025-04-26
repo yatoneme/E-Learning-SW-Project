@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Course" table="course" catalog="elearning" optimistic-lock="version">
+        <id name="courseId" type="int">
+            <column name="course_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="instructor" class="com.elearning.www._1_2_MySql_DB_entities.Instructor" fetch="select">
+            <column name="instructor_id" not-null="true" />
+            <column name="application_id" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" not-null="true" />
+        </property>
+        <property name="difficulty" type="string">
+            <column name="difficulty" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" not-null="true" />
+        </property>
+        <property name="courseStatus" type="byte">
+            <column name="course_status" not-null="true" />
+        </property>
+        <property name="estimatedTime" type="short">
+            <column name="estimated_time" not-null="true" />
+        </property>
+        <property name="coursecol" type="string">
+            <column name="coursecol" length="45" />
+        </property>
+        <set name="modules" table="module" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Module" />
+        </set>
+        <set name="coursefeeshistories" table="coursefeeshistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Coursefeeshistory" />
+        </set>
+        <set name="enrollments" table="enrollment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Enrollment" />
+        </set>
+        <set name="categorieses" table="course_categories" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.elearning.www._1_2_MySql_DB_entities.Categories">
+                <column name="category_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="questionsCreateds" table="questions_created" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.QuestionsCreated" />
+        </set>
+    </class>
+</hibernate-mapping>

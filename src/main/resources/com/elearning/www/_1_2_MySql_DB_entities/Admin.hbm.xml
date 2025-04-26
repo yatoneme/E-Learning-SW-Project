@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Admin" table="admin" catalog="elearning" optimistic-lock="version">
+        <id name="adminId" type="int">
+            <column name="admin_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="isManager" type="java.lang.Byte">
+            <column name="isManager" />
+        </property>
+        <property name="adminEmail" type="string">
+            <column name="admin_email" length="120" not-null="true" unique="true" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="first_name" not-null="true" />
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" not-null="true" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" not-null="true" />
+        </property>
+        <property name="birthdate" type="date">
+            <column name="birthdate" length="10" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="6" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="paypalEmail" type="string">
+            <column name="paypal_email" length="120" not-null="true" unique="true" />
+        </property>
+        <set name="applicationses" table="applications" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="admin_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Applications" />
+        </set>
+        <set name="pointsdiscounts" table="pointsdiscount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="admin_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Pointsdiscount" />
+        </set>
+    </class>
+</hibernate-mapping>

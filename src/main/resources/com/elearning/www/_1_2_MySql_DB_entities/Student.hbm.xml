@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Student" table="student" catalog="elearning" optimistic-lock="version">
+        <id name="studentId" type="int">
+            <column name="student_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="studentEmail" type="string">
+            <column name="student_email" length="120" not-null="true" unique="true" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="first_name" not-null="true" />
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" not-null="true" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" not-null="true" />
+        </property>
+        <property name="birthdate" type="date">
+            <column name="birthdate" length="10" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="6" not-null="true" />
+        </property>
+        <property name="accountStatus" type="byte">
+            <column name="account_status" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="currentPoints" type="java.lang.Integer">
+            <column name="current_points" />
+        </property>
+        <set name="enrollments" table="enrollment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="student_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Enrollment" />
+        </set>
+        <set name="categorieses" table="interests" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="student_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.elearning.www._1_2_MySql_DB_entities.Categories">
+                <column name="category_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="examinedOns" table="examined_on" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="student_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.ExaminedOn" />
+        </set>
+    </class>
+</hibernate-mapping>

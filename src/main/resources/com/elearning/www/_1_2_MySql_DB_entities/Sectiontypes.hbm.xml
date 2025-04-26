@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Sectiontypes" table="sectiontypes" catalog="elearning" optimistic-lock="version">
+        <id name="typeId" type="int">
+            <column name="type_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="section" class="com.elearning.www._1_2_MySql_DB_entities.Section" fetch="select">
+            <column name="section_id" not-null="true" />
+        </many-to-one>
+        <property name="type" type="string">
+            <column name="type" not-null="true" />
+        </property>
+        <property name="video" type="binary">
+            <column name="video" />
+        </property>
+        <property name="articleContent" type="string">
+            <column name="article_content" />
+        </property>
+        <property name="examWeight" type="java.lang.Float">
+            <column name="exam_weight" precision="5" />
+        </property>
+    </class>
+</hibernate-mapping>

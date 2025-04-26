@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Section" table="section" catalog="elearning" optimistic-lock="version">
+        <id name="sectionId" type="int">
+            <column name="section_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="module" class="com.elearning.www._1_2_MySql_DB_entities.Module" fetch="select">
+            <column name="module_id" not-null="true" />
+        </many-to-one>
+        <property name="sectionIndex" type="byte">
+            <column name="section_index" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" not-null="true" />
+        </property>
+        <set name="examinedOns" table="examined_on" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="section_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.ExaminedOn" />
+        </set>
+        <set name="questionsCreateds" table="questions_created" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="section_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.QuestionsCreated" />
+        </set>
+        <set name="sectiontypeses" table="sectiontypes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="section_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Sectiontypes" />
+        </set>
+    </class>
+</hibernate-mapping>

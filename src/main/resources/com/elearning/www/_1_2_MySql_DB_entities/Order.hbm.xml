@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Order" table="order" catalog="elearning" optimistic-lock="version">
+        <id name="orderId" type="int">
+            <column name="order_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="instructorTransactionPaypalId" type="string">
+            <column name="instructor_transaction_paypal_id" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="adminTransactionPaypalId" type="string">
+            <column name="admin_transaction_paypal_id" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="paymentDate" type="timestamp">
+            <column name="payment_date" length="19" not-null="true" />
+        </property>
+        <property name="pointsSpent" type="java.lang.Integer">
+            <column name="points_spent" />
+        </property>
+        <property name="totalAmount" type="big_decimal">
+            <column name="total_amount" precision="9" not-null="true" />
+        </property>
+        <property name="pointsAdded" type="int">
+            <column name="points_added" not-null="true" />
+        </property>
+        <set name="enrollments" table="enrollment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_id" not-null="true" />
+            </key>
+            <one-to-many class="com.elearning.www._1_2_MySql_DB_entities.Enrollment" />
+        </set>
+    </class>
+</hibernate-mapping>

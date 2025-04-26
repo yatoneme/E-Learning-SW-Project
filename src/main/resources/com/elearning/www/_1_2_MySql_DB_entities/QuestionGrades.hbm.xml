@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.QuestionGrades" table="question_grades" catalog="elearning" optimistic-lock="version">
+        <composite-id name="id" class="com.elearning.www._1_2_MySql_DB_entities.QuestionGradesId">
+            <key-property name="sectionId" type="int">
+                <column name="section_id" />
+            </key-property>
+            <key-property name="studentId" type="int">
+                <column name="student_id" />
+            </key-property>
+            <key-property name="questionIndex" type="short">
+                <column name="question_index" />
+            </key-property>
+            <key-property name="attemptNo" type="byte">
+                <column name="attempt_no" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="examinedOn" class="com.elearning.www._1_2_MySql_DB_entities.ExaminedOn" update="false" insert="false" fetch="select">
+            <column name="attempt_no" not-null="true" />
+            <column name="section_id" not-null="true" />
+            <column name="student_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="questionChoices" class="com.elearning.www._1_2_MySql_DB_entities.QuestionChoices" update="false" insert="false" fetch="select">
+            <column name="choice_index" not-null="true" />
+            <column name="question_index" not-null="true" />
+            <column name="section_id" not-null="true" />
+        </many-to-one>
+        <property name="grade" type="short">
+            <column name="grade" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

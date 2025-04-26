@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2025 12:43:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.elearning.www._1_2_MySql_DB_entities.Coursefeeshistory" table="coursefeeshistory" catalog="elearning" optimistic-lock="version">
+        <composite-id name="id" class="com.elearning.www._1_2_MySql_DB_entities.CoursefeeshistoryId">
+            <key-property name="madeDate" type="timestamp">
+                <column name="made_date" length="19" />
+            </key-property>
+            <key-property name="courseId" type="int">
+                <column name="course_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="course" class="com.elearning.www._1_2_MySql_DB_entities.Course" update="false" insert="false" fetch="select">
+            <column name="course_id" not-null="true" />
+        </many-to-one>
+        <property name="fees" type="big_decimal">
+            <column name="fees" precision="9" />
+        </property>
+    </class>
+</hibernate-mapping>
